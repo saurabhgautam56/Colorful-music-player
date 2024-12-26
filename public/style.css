@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff5e62, #ffbc00, #8fd3f4, #4facfe);
+    background-size: 300% 300%;
+    animation: gradientBG 8s ease infinite;
+    color: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.music-player {
+    background-color: rgba(30, 30, 30, 0.199);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+    filter: drop-shadow(0 4px 10px rgba(255, 0, 0, 0.5)) 
+            drop-shadow(0 -4px 10px rgba(0, 0, 255, 0.5));
+}
+
+
+
+#album-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.controls {
+    display: flex; /* Aligns the buttons horizontally */
+    justify-content: center; /* Centers the buttons */
+    gap: 15px; /* Adds space between buttons */
+    margin: 10px 0;
+}
+
+button {
+    background-color: #33333325;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+
+
+.seek-bar,
+.volume-control {
+    margin: 10px 0;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+#time-info {
+    font-size: 14px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
