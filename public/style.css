@@ -19,12 +19,12 @@ body {
 }
 
 .music-player {
-    background-color: rgba(30, 30, 30, 0.199);
+    background-color: rgba(30, 30, 30, 0.19);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 80%;
-    max-width: 300px;
+    width: 70%;
+    max-width: 200px;
     filter: drop-shadow(0 4px 10px rgba(255, 0, 0, 0.5)) 
             drop-shadow(0 -4px 10px rgba(0, 0, 255, 0.5));
 }
@@ -35,7 +35,7 @@ body {
     width: 100%;
     height: auto;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .controls {
@@ -46,11 +46,11 @@ body {
 }
 
 button {
-    background-color: #33333325;
+    background-color: #33333300;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 5px;
     cursor: pointer;
 }
