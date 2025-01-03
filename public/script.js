@@ -10,7 +10,6 @@ const albumCover = document.getElementById('album-cover');
 const currentTimeElem = document.getElementById('current-time');
 const totalDurationElem = document.getElementById('total-duration');
 
-// Song data
 const songs = [
     {title: "Dop Shope", src: "assets/music/Dope Shope - International Villager 128 Kbps.mp3", cover: "assets/images/Dope Shope - International Villager 128 Kbps.jpg"},
     {title: "Angreji Beat", src: "assets/music/Angreji Beat - International Villager 128 Kbps.mp3", cover: "assets/images/Angreji Beat - International Villager 128 Kbps.jpg" },
@@ -30,54 +29,46 @@ const songs = [
 
 let currentIndex = 0;
 
-// Load the current song
 function loadSong(index) {
     const song = songs[index];
     audioPlayer.src = song.src;
     songTitle.textContent = song.title;
     albumCover.src = song.cover;
 
-    // Load metadata for duration
     audioPlayer.addEventListener('loadedmetadata', () => {
         totalDurationElem.textContent = formatTime(audioPlayer.duration);
     });
 }
 
-// Play or pause music
 function togglePlayPause() {
     if (audioPlayer.paused) {
         audioPlayer.play();
-        playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change to pause icon
+        playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; 
     } else {
         audioPlayer.pause();
-        playPauseButton.innerHTML = '<i class="fas fa-play"></i>'; // Change to play icon
+        playPauseButton.innerHTML = '<i class="fas fa-play"></i>'; 
     }
 }
 
-// Format time in mm:ss
 function formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
-// Update current time
 audioPlayer.addEventListener('timeupdate', () => {
     currentTimeElem.textContent = formatTime(audioPlayer.currentTime);
     progressBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
 });
 
-// Seek song
 progressBar.addEventListener('input', () => {
     audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
 });
 
-// Adjust volume
 volumeControl.addEventListener('input', () => {
     audioPlayer.volume = volumeControl.value;
 });
 
-// Populate playlist
 songs.forEach((song, index) => {
     const li = document.createElement('li');
     li.textContent = song.title;
@@ -85,50 +76,43 @@ songs.forEach((song, index) => {
         currentIndex = index;
         loadSong(currentIndex);
         audioPlayer.play();
-        playPauseButton.textContent = '⏸️';
+        playPauseButton.textContent = 'fas fa-playPause fa-2x';
     });
     songList.appendChild(li);
 });
 
-// Load the current song by index
 function loadSong(index) {
     const song = songs[index];
     audioPlayer.src = song.src;
     songTitle.textContent = song.title;
     albumCover.src = song.cover;
 
-    // Load metadata for duration when available
     audioPlayer.addEventListener('loadedmetadata', () => {
         totalDurationElem.textContent = formatTime(audioPlayer.duration);
     });
 }
 
-// Play the next song
 function nextSong() {
-    currentIndex = (currentIndex + 1) % songs.length;  // Loop back to the first song if we reach the end
+    currentIndex = (currentIndex + 1) % songs.length;  
     loadSong(currentIndex);
     audioPlayer.play();
-    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // Update button to pause icon
+    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; 
 }
 
-// Play the previous song
 function prevSong() {
-    currentIndex = (currentIndex - 1 + songs.length) % songs.length; // Loop back to the last song if we reach the beginning
+    currentIndex = (currentIndex - 1 + songs.length) % songs.length; 
     loadSong(currentIndex);
     audioPlayer.play();
-    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // Update button to pause icon
+    playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; 
 }
 
-// Event listener for when the song ends to automatically play the next song
 audioPlayer.addEventListener('ended', () => {
     nextSong();
 });
 
 
-// Initial setup
 loadSong(currentIndex);
 
-// Event listeners
 playPauseButton.addEventListener('click', togglePlayPause);
 nextButton.addEventListener('click', nextSong);
 prevButton.addEventListener('click', prevSong);
